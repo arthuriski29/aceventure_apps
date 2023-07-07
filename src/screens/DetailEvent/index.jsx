@@ -26,7 +26,7 @@ const DetailEvent = ({route, navigation}) => {
 
   React.useEffect(() => {
     const getEventData = async () => {
-      const {data} = await http().get(`/event/${id}`);
+      const {data} = await http().get(`/events/${id}`);
       setEventDetail(data.results);
     };
     if (id) {

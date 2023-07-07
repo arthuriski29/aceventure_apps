@@ -1,5 +1,3 @@
-import 'react-native-gesture-handler';
-// import globalStyles from '../assets/styles';
 import {
   View,
   Text,
@@ -11,23 +9,19 @@ import {
   BackHandler,
 } from 'react-native';
 import React from 'react';
-// import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
-import http from '../../helpers/http';
-import {useNavigation} from '@react-navigation/native';
-import FAwesome from 'react-native-vector-icons/FontAwesome';
-import {EventBox, DateBox, CategoryBox} from '../../components';
-// import {createDrawerNavigator} from '@react-navigation/drawer';
-// import {NavigationContainer} from '@react-navigation/native';
 
-// const Drawer = createDrawerNavigator();
+import {useNavigation} from '@react-navigation/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import FAwesome from 'react-native-vector-icons/FontAwesome';
+import {EventBox, CategoryBox, DateBox} from '../../components';
+import http from '../../helpers/http';
 
 const Home = () => {
   const navigation = useNavigation();
   const [events, setEvent] = React.useState([]);
   React.useEffect(() => {
     async function getEvent() {
-      const {data} = await http().get('/event?sort=date&sortBy=asc');
+      const {data} = await http().get('/events?sort=date&sortBy=asc');
       setEvent(data.results);
     }
     getEvent();
@@ -40,41 +34,37 @@ const Home = () => {
     };
   }, []);
   return (
-    <View style={styles.container}>
+    <ScrollView style={style.wrapper}>
+      <StatusBar translucent={true} backgroundColor="#F0592C" />
       <View>
-        <StatusBar translucent={true} backgroundColor="transparent" />
-        <View style={styles.navbar}>
-          <View style={styles.wrapper}>
-            <View>
-              <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <Icon name="menu" size={30} />
-              </TouchableOpacity>
-            </View>
-
-            {/* <TouchableOpacity onPress={() => navigation.navigate('Profile')}> */}
-            {/* <Text style={styles.textColor}>Home Fajar Fathur</Text> */}
-            {/* </TouchableOpacity> */}
-            <View>
-              <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                <Icon name="message-square" size={30} />
-              </TouchableOpacity>
-            </View>
+        <View style={style.drawerContainer}>
+          <View>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <FeatherIcon name="menu" size={35} color="#FFF" />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+              <FeatherIcon name="message-square" size={30} color="#FFF" />
+            </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.searchInput}>
-          <TextInput placeholder="Search Event" style={styles.inputText} />
-        </View>
+        <TextInput
+          style={style.textInput}
+          placeholderTextColor="white"
+          placeholder="Search Event..."
+        />
       </View>
-      <ScrollView style={styles.container} horizontal={false}>
-        <View style={StyleSheet.wrapTitle}>
+      <ScrollView style={style.container} horizontal={false}>
+        <View style={style.wrapTitle}>
           <View>
-            <Text style={styles.containerText}>Events For You</Text>
+            <Text style={style.containerText}>Events For You</Text>
           </View>
           <View>
-            <FAwesome name="sliders" size={35} color="#4c3f91" />
+            <FAwesome name="sliders" size={35} color="#F0592C" />
           </View>
         </View>
-        <ScrollView horizontal={true} style={styles.wrapperBox}>
+        <ScrollView horizontal={true} style={style.wrapperBox}>
           {events.map(item => {
             return (
               <EventBox
@@ -88,26 +78,24 @@ const Home = () => {
           })}
         </ScrollView>
         <View>
-          <Text style={styles.containerText}>Discover</Text>
+          <Text style={style.containerText}>Discover</Text>
         </View>
         <CategoryBox />
-        <View style={styles.containerUpcoming}>
-          <Text style={styles.containerTextUpcoming}>Upcoming</Text>
+        <View style={style.containerUpcoming}>
+          <Text style={style.containerTextUpcoming}>Upcoming</Text>
           <Text>See all</Text>
         </View>
-        <View style={styles.monthTextCont}>
-          <Text style={styles.monthText}>OCT</Text>
+        <View style={style.monthTextCont}>
+          <Text style={style.monthText}>OCT</Text>
         </View>
         <View>
           {uniqueDates.map(date => {
             const itemsByDate = events.filter(item => item?.date === date);
             const item = itemsByDate[0];
             return (
-              <View
-                key={`event-by-date-${item?.id}`}
-                style={styles.upcomingBox}>
+              <View key={`event-by-date-${item?.id}`} style={style.upcomingBox}>
                 <DateBox dates={item?.date} days={item?.date} />
-                <View style={styles.contentUpcoming}>
+                <View style={style.contentUpcoming}>
                   <EventBox
                     key={`event-${item?.id}`}
                     dates={item?.date}
@@ -115,8 +103,8 @@ const Home = () => {
                     eventImage={item?.picture}
                     eventId={item?.id}
                   />
-                  <TouchableOpacity style={styles.buttonUpcoming}>
-                    <Text style={styles.textButton}>
+                  <TouchableOpacity style={style.buttonUpcoming}>
+                    <Text style={style.textButton}>
                       Show All {itemsByDate.length} Events
                     </Text>
                   </TouchableOpacity>
@@ -126,55 +114,17 @@ const Home = () => {
           })}
         </View>
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#F0592C',
-//   },
-//   navbar: {
-//     height: 70,
-//   },
-//   wrapper: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     flex: 1,
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//     backgroundColor: '#F0592C',
-//     marginHorizontal: 20,
-//   },
-//   textColor: {
-//     color: 'black',
-//     fontSize: 20,
-//     fontWeight: 'bold',
-//   },
-//   searchInput: {
-//     borderRadius: 10,
-//     height: 35,
-//     borderWidth: 1,
-//     borderColor: 'white',
-//     boxShadow: 10,
-//     marginHorizontal: 20,
-//     backgroundColor: '#F0592C',
-//   },
-//   inputText: {
-//     color: 'black',
-//     paddingHorizontal: 20,
-//   },
-// });
-
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   drawerContainer: {
     padding: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   wrapper: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     gap: 30,
     paddingTop: 30,
   },
@@ -266,12 +216,12 @@ const styles = StyleSheet.create({
   },
   textDiscover: {
     fontSize: 16,
-    color: '#884DFF',
+    color: '#FFBA7B',
   },
   iconDiscover: {
     width: 45,
     height: 45,
-    backgroundColor: '#D0B8FF',
+    backgroundColor: '#FFBA7B',
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',

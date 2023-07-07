@@ -9,7 +9,7 @@ export const asyncLogin = createAsyncThunk(
       form.append('email', payload.email);
       form.append('password', payload.password);
 
-      const {data} = await http().post('/auth/login', form.toString());
+      const {data} = await http().post('/auth/sign-in', form.toString());
       return data.results.token;
     } catch (err) {
       const message = err?.response?.data?.message;
@@ -33,7 +33,7 @@ export const asyncRegister = createAsyncThunk(
       form.append('confirmPassword', payload.confirmPassword);
       form.append('termAndCondition', payload.termAndCondition);
 
-      const {data} = await http().post('/auth/register', form.toString());
+      const {data} = await http().post('/auth/sign-up', form.toString());
       // return data.results.token;
       return data.message;
     } catch (err) {

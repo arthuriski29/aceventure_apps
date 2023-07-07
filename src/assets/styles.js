@@ -36,7 +36,27 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   link: {
+    fontWeight: 'bold',
     color: '#F0592C',
+  },
+  wrapper: {
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 10,
+    gap: 35,
+  },
+  componentWrap: {
+    gap: 40,
+  },
+  heading: {
+    marginTop: 70,
+    gap: 20,
+  },
+  formGap: {
+    gap: 20,
+  },
+  inputGap: {
+    gap: 25,
   },
 });
 

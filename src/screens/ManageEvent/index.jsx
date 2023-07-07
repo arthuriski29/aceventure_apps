@@ -20,7 +20,7 @@ const ManageEvent = ({navigation}) => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchData = async () => {
-        const {data} = await http(token).get('/event/manage');
+        const {data} = await http(token).get('/events/manage');
         setEventByMe(data.results);
       };
       fetchData();

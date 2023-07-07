@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native';
 import React from 'react';
 // import {Link} from '@react-navigation/native';
 import globalStyles from '../../assets/styles';
@@ -6,6 +13,7 @@ import {Input, Button} from '../../components';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import http from '../../helpers/http';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const validationSchema = Yup.object({
   email: Yup.string().required('Email is Required!').email('Email is invalid!'),
@@ -37,49 +45,61 @@ const ForgotPassword = ({navigation}) => {
     setTimeout(() => setErrorMessage(''), 1500);
   }
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.heading}>
-        <View>
-          <Text style={globalStyles.title}>Forgot Password</Text>
-        </View>
-        <View>
-          <Text style={globalStyles.subTitle}>
-            You&rsquo;ll get mail soon on your email
-          </Text>
-        </View>
-      </View>
-      <Formik
-        initialValues={{email: ''}}
-        validationSchema={validationSchema}
-        onSubmit={doForgot}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
+    <ScrollView style={globalStyles.wrapper}>
+      <StatusBar
+        barStyle="default"
+        translucent={true}
+        backgroundColor="#F0592C"
+      />
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Icon name="arrow-left" size={25} color="#373A42" />
+      </TouchableOpacity>
+      <View style={globalStyles.componentWrap}>
+        <View style={globalStyles.heading}>
           <View>
-            <View>
-              <Input
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                keyboardType="email-address"
-                placeholder="Email"
-              />
-            </View>
-            {errors.email && touched.email && (
-              <Text style={styles.errorsText}>{errors.email}</Text>
-            )}
-            <View>
-              <Button onPress={handleSubmit} btnTitle="Send" />
-            </View>
+            <Text style={globalStyles.title}>Forgot Password</Text>
           </View>
-        )}
-      </Formik>
-    </View>
+          <View>
+            <Text style={globalStyles.subTitle}>
+              You&rsquo;ll get mail soon on your email
+            </Text>
+          </View>
+        </View>
+        <Formik
+          initialValues={{email: ''}}
+          validationSchema={validationSchema}
+          onSubmit={doForgot}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View style={globalStyles.formGap}>
+              <View style={globalStyles.inputGap}>
+                <Input
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                  placeholder="Email"
+                />
+              </View>
+              {errors.email && touched.email && (
+                <Text style={styles.errorsText}>{errors.email}</Text>
+              )}
+              <View>
+                <Button onPress={handleSubmit} btnTitle="Send">
+                  Send
+                </Button>
+              </View>
+            </View>
+          )}
+        </Formik>
+      </View>
+    </ScrollView>
   );
 };
 

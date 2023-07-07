@@ -104,7 +104,7 @@ const style = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     borderWidth: 3,
-    borderColor: '#4c3f91',
+    borderColor: '#F0592C',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 30,
@@ -246,8 +246,8 @@ const Main = () => {
       {!token && (
         <AuthStack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="SplashScreen" component={SplashScreen} />
-          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="ResetPassword" component={ResetPassword} />
         </AuthStack.Navigator>

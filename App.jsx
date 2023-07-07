@@ -11,7 +11,6 @@ const App = () => {
       <PersistGate persistor={persistor}>
         <Main />
       </PersistGate>
-      <Main />
     </Provider>
   );
 };

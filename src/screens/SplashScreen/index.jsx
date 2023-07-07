@@ -1,6 +1,6 @@
 import {View, Text, StyleSheet, Image, StatusBar} from 'react-native';
 import React from 'react';
-import {splash} from '../../assets/images';
+import {picSplash} from '../../assets/images';
 import {useSelector} from 'react-redux';
 
 const SplashScreen = ({navigation}) => {
@@ -24,7 +24,7 @@ const SplashScreen = ({navigation}) => {
         <Text style={style.titleApp}>Find Events You Love</Text>
       </View>
       <View style={style.imgContainer}>
-        <Image source={splash} />
+        <Image source={picSplash} />
       </View>
     </View>
   );
@@ -32,7 +32,7 @@ const SplashScreen = ({navigation}) => {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
     gap: 30,
     alignItems: 'center',

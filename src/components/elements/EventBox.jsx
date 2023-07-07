@@ -26,9 +26,7 @@ const EventBox = ({dates, title, eventImage, eventId, ...rest}) => {
               {', '}
               {moment(dates).format('LLL')}
             </Text>
-            <Text style={style.textContaninerNew}>
-              {title.slice(0, 14) + ' ...'}
-            </Text>
+            <Text style={style.textContaninerNew}>{title}</Text>
             <TouchableOpacity
               style={style.button1}
               onPress={() => handlePressEvent(eventId)}>

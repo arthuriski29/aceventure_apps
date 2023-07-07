@@ -1,4 +1,12 @@
-import {View, Text, StyleSheet, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  ScrollView,
+  StatusBar,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {Link} from '@react-navigation/native';
 import globalStyles from '../../assets/styles';
@@ -8,6 +16,7 @@ import {asyncLogin} from '../../redux/actions/auth';
 import {clearMessage} from '../../redux/reducers/auth';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -16,7 +25,7 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Password is required'),
 });
 
-const Login = ({navigation}) => {
+const Login = () => {
   const dispatch = useDispatch();
   const errorMessage = useSelector(state => state.auth.errorMessage);
   const doLogin = values => {
@@ -28,86 +37,89 @@ const Login = ({navigation}) => {
     }, 5000);
   }
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.heading}>
-        <View>
-          <Text style={globalStyles.title}>Login</Text>
-        </View>
-        <View>
-          <Text style={globalStyles.subTitle}>
-            Hi, Welcome back to Urticket!
-          </Text>
-          {errorMessage && <Alert variant="error">{errorMessage}</Alert>}
-        </View>
-      </View>
-      <Formik
-        initialValues={{email: '', password: ''}}
-        validationSchema={validationSchema}
-        onSubmit={doLogin}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
+    <ScrollView style={globalStyles.wrapper}>
+      <StatusBar
+        barStyle="default"
+        translucent={true}
+        backgroundColor="#F0592C"
+      />
+      <TouchableOpacity>
+        <Icon name="arrow-left" size={25} color="transparent" />
+      </TouchableOpacity>
+      <View style={globalStyles.componentWrap}>
+        <View style={globalStyles.heading}>
           <View>
-            <View style={styles.formGap}>
-              <Input
-                onChangeText={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                keyboardType="email-address"
-                placeholder="Email"
-              />
-              {errors.email && touched.email && (
-                <Text style={styles.errorsText}>{errors.email}</Text>
-              )}
-              <Input
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                keyboardType="default"
-                placeholder="Password"
-                secureTextEntry
-              />
-              {errors.password && touched.password && (
-                <Text style={styles.errorsText}>{errors.password}</Text>
-              )}
-            </View>
-            <View style={styles.alignRight}>
-              <Link to="/ForgotPassword" style={globalStyles.link}>
-                Forgot Password ?
-              </Link>
-            </View>
-
-            <View>
-              <Button
-                disabled={!touched.email && !touched.password}
-                onPress={handleSubmit}
-                btnTitle="Login">
-                Log In
-              </Button>
-            </View>
+            <Text style={globalStyles.title}>Login</Text>
           </View>
-        )}
-      </Formik>
-    </View>
+          <View>
+            <Text style={globalStyles.subTitle}>
+              Hi, Welcome back to Urticket!
+              <Link to="/Register" style={globalStyles.link}>
+                Register
+              </Link>
+            </Text>
+            {errorMessage && <Alert variant="error">{errorMessage}</Alert>}
+          </View>
+        </View>
+        <Formik
+          initialValues={{email: '', password: ''}}
+          validationSchema={validationSchema}
+          onSubmit={doLogin}>
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <View style={globalStyles.formGap}>
+              <View style={globalStyles.inputGap}>
+                <Input
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+                  keyboardType="email-address"
+                  placeholder="Email"
+                />
+                {errors.email && touched.email && (
+                  <Text style={styles.errorsText}>{errors.email}</Text>
+                )}
+                <Input
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  value={values.password}
+                  keyboardType="default"
+                  placeholder="Password"
+                  secureTextEntry
+                />
+                {errors.password && touched.password && (
+                  <Text style={styles.errorsText}>{errors.password}</Text>
+                )}
+              </View>
+              <View style={styles.alignRight}>
+                <Link to="/ForgotPassword" style={globalStyles.link}>
+                  Forgot Password ?
+                </Link>
+              </View>
+
+              <View>
+                <Button
+                  disabled={!touched.email && !touched.password}
+                  onPress={handleSubmit}
+                  btnTitle="Login">
+                  Log In
+                </Button>
+              </View>
+            </View>
+          )}
+        </Formik>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: 10,
-    gap: 15,
-  },
-  heading: {
-    gap: 10,
-  },
-  formGap: {
-    gap: 5,
-  },
   alignRight: {
     alignSelf: 'flex-end',
   },

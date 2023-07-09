@@ -14,6 +14,14 @@ import {picCard1, picCard2, picDefProfile} from '../../assets/images';
 import {useSelector} from 'react-redux';
 import http from '../../helpers/http';
 import {ImageTemplate} from '../../components';
+import {
+  faChevronRight,
+  faEdit,
+  faPlus,
+  faUnlock,
+} from '@fortawesome/free-solid-svg-icons';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Profile = ({navigation}) => {
   const token = useSelector(state => state.auth.token);
@@ -73,7 +81,7 @@ const Profile = ({navigation}) => {
             <Text style={style.cardText}>Card</Text>
             <View>
               <TouchableOpacity style={style.plusCont}>
-                <Text>+</Text>
+                <FontAwesomeIcon icon={faPlus} color={'#7B7B7B'} size={18} />
               </TouchableOpacity>
             </View>
           </View>
@@ -91,7 +99,7 @@ const Profile = ({navigation}) => {
         <View style={style.editProf}>
           <View style={style.contTextEdit}>
             <View>
-              <Text>+</Text>
+              <FontAwesomeIcon icon={faEdit} color={'#7B7B7B'} size={18} />
             </View>
             <TouchableOpacity
               onPress={() => navigation.navigate('ProfileEdit')}>
@@ -99,13 +107,17 @@ const Profile = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity>
-            <Text>+</Text>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              color={'#7B7B7B'}
+              size={18}
+            />
           </TouchableOpacity>
         </View>
         <View style={style.editPass}>
           <View style={style.contTextEdit}>
             <View>
-              <Text>+</Text>
+              <FontAwesomeIcon icon={faUnlock} color={'#7B7B7B'} size={18} />
             </View>
             <TouchableOpacity
               onPress={() => navigation.navigate('ChangePassword')}>
@@ -113,7 +125,11 @@ const Profile = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity>
-            <Text>+</Text>
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              color={'#7B7B7B'}
+              size={18}
+            />
           </TouchableOpacity>
         </View>
       </View>

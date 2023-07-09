@@ -14,9 +14,16 @@ import {Formik} from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
-  oldPassword: Yup.string().required('Old Password is Required'),
-  newPassword: Yup.string().required('New Password is Required'),
-  confirmPassword: Yup.string().required('Confirm Password is Required'),
+  oldPassword: Yup.string()
+    .required('Old Password is Required')
+    .min(8, ({min}) => `Password must be at least ${min} characters`),
+  newPassword: Yup.string()
+    .required('New Password is Required')
+    .min(8, ({min}) => `Password must be at least ${min} characters`),
+  confirmPassword: Yup.string()
+    .required('Confirm Password is Required')
+    .min(8, ({min}) => `Password must be at least ${min} characters`)
+    .oneOf([Yup.ref('newPassword'), null], 'Password must match'),
 });
 
 const ChangePassword = ({navigation}) => {
@@ -26,14 +33,13 @@ const ChangePassword = ({navigation}) => {
 
   const doChangePass = async values => {
     try {
-      const form = new URLSearchParams();
-      form.append('oldPassword', values.oldPassword);
-      form.append('newPassword', values.newPassword);
-      form.append('confirmPassword', values.confirmPassword);
-      const {data} = await http(token).post(
-        '/change-password',
-        form.toString(),
-      );
+      const {oldPassword, newPassword, confirmPassword} = values;
+      const form = new URLSearchParams({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      });
+      const {data} = await http(token).post('/changePassword', form.toString());
       console.log(data);
       if (data?.message) {
         setSuccessMessage(data?.message);
@@ -97,7 +103,7 @@ const ChangePassword = ({navigation}) => {
                 {errorMessage && <Alert variant="error">{errorMessage}</Alert>}
 
                 <View style={style.itemFormInput}>
-                  <Text>Old Password</Text>
+                  <Text style={style.titleInput}>Old Password</Text>
                   <View>
                     <Input
                       onChangeText={handleChange('oldPassword')}
@@ -105,6 +111,7 @@ const ChangePassword = ({navigation}) => {
                       value={values.oldPassword}
                       placeholder="Enter your old password"
                       password
+                      secureTextEntry
                     />
                     {errors.oldPassword && touched.oldPassword && (
                       <Text style={style.errorsText}>{errors.oldPassword}</Text>
@@ -113,14 +120,15 @@ const ChangePassword = ({navigation}) => {
                 </View>
 
                 <View style={style.itemFormInput}>
-                  <Text>New Password</Text>
+                  <Text style={style.titleInput}>New Password</Text>
                   <View>
                     <Input
                       onChangeText={handleChange('newPassword')}
                       onBlur={handleBlur('newPassword')}
                       value={values.newPassword}
-                      placeholder="Re-Enter your new password"
+                      placeholder="Enter your new password"
                       password
+                      secureTextEntry
                     />
                     {errors.newPassword && touched.newPassword && (
                       <Text style={style.errorsText}>{errors.newPassword}</Text>
@@ -129,14 +137,15 @@ const ChangePassword = ({navigation}) => {
                 </View>
 
                 <View style={style.itemFormInput}>
-                  <Text>Confirm Password</Text>
+                  <Text style={style.titleInput}>Confirm Password</Text>
                   <View>
                     <Input
                       onChangeText={handleChange('confirmPassword')}
                       onBlur={handleBlur('confirmPassword')}
                       value={values.confirmPassword}
-                      placeholder="Re-Enter your confirm password"
+                      placeholder="Re-Enter your New password"
                       password
+                      secureTextEntry
                     />
                     {errors.confirmPassword && touched.confirmPassword && (
                       <Text style={style.errorsText}>
@@ -146,7 +155,9 @@ const ChangePassword = ({navigation}) => {
                   </View>
                 </View>
 
-                <Button onPress={handleSubmit} btnTitle="Reset" />
+                <Button onPress={handleSubmit} btnTitle="Reset">
+                  Reset Password
+                </Button>
               </View>
             )}
           </Formik>
@@ -257,6 +268,9 @@ const style = StyleSheet.create({
   },
   errorsText: {
     color: '#FF9191',
+  },
+  titleInput: {
+    fontFamily: 'Poppins-Bold',
   },
 });
 export default ChangePassword;

@@ -12,8 +12,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import {picDefProfile} from '../../assets';
 import {useSelector} from 'react-redux';
 import http from '../../helpers/http';
-import {ImageTemplate, Input} from '../../components';
-import Dropdown from 'react-native-input-select';
+import {ImageTemplate} from '../../components';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import SelectDropdown from 'react-native-select-dropdown';
 import {Formik} from 'formik';
@@ -872,7 +871,7 @@ const style = StyleSheet.create({
     backgroundColor: '#FFF',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#444',
+    borderColor: '#F0592C',
     fontFamily: 'Poppins-Medium',
   },
   titleInput: {

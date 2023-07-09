@@ -5,7 +5,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 
-const EventBox = ({dates, title, eventImage, eventId, ...rest}) => {
+const EventBox = ({date, event, eventImage, eventId, ...rest}) => {
   const navigation = useNavigation();
   const handlePressEvent = id => {
     navigation.navigate('DetailEvent', {id});
@@ -22,11 +22,9 @@ const EventBox = ({dates, title, eventImage, eventId, ...rest}) => {
           style={style.dissolveContainer}>
           <View style={style.warapperTextCont}>
             <Text style={style.textNew}>
-              {moment(dates).format('LLLL').slice(0, 3)}
-              {', '}
-              {moment(dates).format('LLL')}
+              {moment(date).format('ddd, D MMM, h:mm A')}
             </Text>
-            <Text style={style.textContaninerNew}>{title}</Text>
+            <Text style={style.textContaninerNew}>{event}</Text>
             <TouchableOpacity
               style={style.button1}
               onPress={() => handlePressEvent(eventId)}>
@@ -65,15 +63,18 @@ const style = StyleSheet.create({
   textContaninerNew: {
     color: 'white',
     fontSize: 22,
+    letterSpacing: 1,
     fontWeight: 'bold',
     textTransform: 'capitalize',
   },
   textNew: {
     fontSize: 16,
     fontWeight: 'semibold',
+    letterSpacing: 1,
     color: 'white',
     width: 200,
   },
+
   warapperTextCont: {
     position: 'absolute',
     bottom: 50,
@@ -81,7 +82,7 @@ const style = StyleSheet.create({
   },
 
   button1: {
-    backgroundColor: '#FF3D71',
+    backgroundColor: '#F0592C',
     width: 45,
     height: 45,
     borderRadius: 10,

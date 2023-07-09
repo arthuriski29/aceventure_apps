@@ -294,7 +294,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   touchButton: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     width: '100%',
     height: 55,
     justifyContent: 'center',

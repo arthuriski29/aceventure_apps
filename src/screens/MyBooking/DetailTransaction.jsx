@@ -209,13 +209,13 @@ const style = StyleSheet.create({
     gap: 7,
   },
   textTopManage: {
-    color: '#4c3f91',
+    color: '#F0592C',
     fontFamily: 'Poppins-SemiBold',
     fontSize: 13,
   },
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   textHeader: {

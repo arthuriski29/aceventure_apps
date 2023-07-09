@@ -69,9 +69,9 @@ function CustomDrawerContent(props) {
         </View>
         <View>
           <Text style={style.textFullname}>
-            {profile?.fullName?.length < 14 && profile?.fullName}
-            {profile?.fullName?.length >= 14 &&
-              profile?.fullName?.slice(0, 14) + ' ...'}
+            {profile?.fullName?.length < 25 && profile?.fullName}
+            {profile?.fullName?.length >= 25 &&
+              profile?.fullName?.slice(0, 20) + ' ...'}
           </Text>
           <Text style={style.textProfession}>
             {profile.profession ? profile.profession : 'profession: -'}
@@ -89,54 +89,6 @@ function CustomDrawerContent(props) {
     </DrawerContentScrollView>
   );
 }
-
-const style = StyleSheet.create({
-  containerProfile: {
-    paddingTop: 40,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    gap: 10,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  foto: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 3,
-    borderColor: '#F0592C',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 30,
-  },
-  fotoIcon: {
-    width: 55,
-    height: 55,
-    backgroundColor: 'gray',
-    borderRadius: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-  },
-  IMGProfiles: {
-    objectFit: 'cover',
-    width: 60,
-    height: 60,
-  },
-  textFullname: {
-    fontSize: 16,
-    fontFamily: 'Poppins-SemiBold',
-    textTransform: 'capitalize',
-    color: 'black',
-    width: 240,
-  },
-  textProfession: {
-    fontSize: 12,
-    fontFamily: 'Poppins-SemiBold',
-    textTransform: 'capitalize',
-    color: 'grey',
-  },
-});
 
 function MyDrawer() {
   return (
@@ -189,9 +141,9 @@ function MyDrawer() {
         name="Home"
         component={Home}
         options={{
-          drawerIcon: ({color, size}) => (
-            <FontAwesome5Icon name="home" color={color} size={size} />
-          ),
+          drawerActiveTintColor: '#fff',
+          drawerActiveBackgroundColor: '#F0592C',
+          drawerIcon: ({size}) => <FontAwesome5Icon name="home" size={20} />,
           drawerLabel: 'Home',
         }}
       />
@@ -199,9 +151,9 @@ function MyDrawer() {
         name="Profile"
         component={Profile}
         options={{
-          drawerIcon: ({color, size}) => (
-            <FeatherIcon name="user" color={color} size={size} />
-          ),
+          drawerActiveTintColor: '#fff',
+          drawerActiveBackgroundColor: '#F0592C',
+          drawerIcon: ({size}) => <FeatherIcon name="user" size={20} />,
           drawerLabel: 'Profile',
         }}
       />
@@ -209,9 +161,9 @@ function MyDrawer() {
         name="ManageEvent"
         component={ManageEvent}
         options={{
-          drawerIcon: ({color, size}) => (
-            <FeatherIcon name="plus-circle" color={color} size={size} />
-          ),
+          drawerActiveTintColor: '#fff',
+          drawerActiveBackgroundColor: '#F0592C',
+          drawerIcon: ({size}) => <FeatherIcon name="plus-circle" size={20} />,
           drawerLabel: 'Manage Event',
         }}
       />
@@ -219,9 +171,9 @@ function MyDrawer() {
         name="MyBooking"
         component={MyBooking}
         options={{
-          drawerIcon: ({color, size}) => (
-            <FeatherIcon name="clipboard" color={color} size={size} />
-          ),
+          drawerActiveTintColor: '#fff',
+          drawerActiveBackgroundColor: '#F0592C',
+          drawerIcon: ({size}) => <FeatherIcon name="clipboard" size={20} />,
           drawerLabel: 'My Booking',
         }}
       />
@@ -229,15 +181,67 @@ function MyDrawer() {
         name="MyWishlist"
         component={MyWishlist}
         options={{
-          drawerIcon: ({color, size}) => (
-            <FeatherIcon name="heart" color={color} size={size} />
-          ),
+          drawerActiveTintColor: '#fff',
+          drawerActiveBackgroundColor: '#F0592C',
+          drawerIcon: ({size}) => <FeatherIcon name="heart" size={20} />,
           drawerLabel: 'My Wishlist',
         }}
       />
     </Drawer.Navigator>
   );
 }
+
+const style = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+  containerProfile: {
+    paddingTop: 40,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    gap: 10,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  foto: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    borderWidth: 3,
+    borderColor: '#F0592C',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 30,
+  },
+  fotoIcon: {
+    width: 55,
+    height: 55,
+    backgroundColor: 'gray',
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  IMGProfiles: {
+    objectFit: 'cover',
+    width: 60,
+    height: 60,
+  },
+  textFullname: {
+    fontSize: 16,
+    fontFamily: 'Poppins-SemiBold',
+    textTransform: 'capitalize',
+    color: 'black',
+    width: 240,
+  },
+  textProfession: {
+    fontSize: 12,
+    fontFamily: 'Poppins-SemiBold',
+    textTransform: 'capitalize',
+    color: 'grey',
+  },
+});
 
 const Main = () => {
   const token = useSelector(state => state.auth.token);

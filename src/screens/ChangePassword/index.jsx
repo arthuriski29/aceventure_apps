@@ -159,7 +159,7 @@ const ChangePassword = ({navigation}) => {
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   textHeader: {
@@ -203,7 +203,7 @@ const style = StyleSheet.create({
     width: 137,
     height: 137,
     borderWidth: 5,
-    borderColor: '#4c3f91',
+    borderColor: '#F0592C',
     borderRadius: 70,
     justifyContent: 'center',
     alignItems: 'center',
@@ -238,7 +238,7 @@ const style = StyleSheet.create({
     width: '100%',
   },
   touchButton: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     width: '100%',
     height: 55,
     justifyContent: 'center',

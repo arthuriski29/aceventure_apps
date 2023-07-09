@@ -83,7 +83,7 @@ const EventList = ({
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   textHeader: {
@@ -144,7 +144,7 @@ const style = StyleSheet.create({
     gap: 5,
   },
   textBtnDetail: {
-    color: '#4c3f91',
+    color: '#F0592C',
     fontFamily: 'Poppins-Medium',
   },
   btnGroupEvent: {

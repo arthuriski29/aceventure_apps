@@ -6,7 +6,7 @@ const BtnMinOpacity = ({icon, text}) => {
   return (
     <View style={style.contBtnTopManage}>
       <TouchableOpacity style={style.btnTopManage}>
-        <FeatherIcon name={icon} size={25} color="#4c3f91" />
+        <FeatherIcon name={icon} size={25} color="#F0592C" />
         <Text style={style.textTopManage}>{text}</Text>
       </TouchableOpacity>
     </View>
@@ -28,7 +28,7 @@ const style = StyleSheet.create({
     gap: 7,
   },
   textTopManage: {
-    color: '#4c3f91',
+    color: '#F0592C',
     fontFamily: 'Poppins-SemiBold',
     fontSize: 13,
   },

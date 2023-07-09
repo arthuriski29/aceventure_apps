@@ -101,14 +101,14 @@ const style = StyleSheet.create({
   },
   textDiscover: {
     fontSize: 14,
-    color: '#884DFF',
+    color: '#F0592C',
     fontFamily: 'Poppins-SemiBold',
     textTransform: 'uppercase',
   },
   iconDiscover: {
     width: 45,
     height: 45,
-    backgroundColor: '#D0B8FF',
+    backgroundColor: '#F0592C',
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',

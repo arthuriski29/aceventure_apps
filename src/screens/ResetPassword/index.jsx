@@ -172,7 +172,7 @@ const style = StyleSheet.create({
     letterSpacing: 0.5,
   },
   textSubLoginBtn: {
-    color: '#4c3f91',
+    color: '#F0592C',
     fontSize: 16,
     fontFamily: 'Poppins-SemiBold',
     letterSpacing: 0.5,

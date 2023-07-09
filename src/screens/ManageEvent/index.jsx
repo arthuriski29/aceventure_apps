@@ -85,7 +85,7 @@ const ManageEvent = ({navigation}) => {
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   textHeader: {

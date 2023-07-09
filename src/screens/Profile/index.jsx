@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import {card1, card2, noProfile} from '../../assets/images';
+import {picCard1, picCard2, picDefProfile} from '../../assets/images';
 import {useSelector} from 'react-redux';
 import http from '../../helpers/http';
 import {ImageTemplate} from '../../components';
@@ -37,7 +37,7 @@ const Profile = ({navigation}) => {
     navigation.navigate('Home');
   };
   return (
-    <View style={style.container}>
+    <ScrollView style={style.container}>
       <StatusBar translucent={true} backgroundColor="transparent" />
       <View style={style.sectionHeader}>
         <View style={style.contentHeader}>
@@ -56,7 +56,7 @@ const Profile = ({navigation}) => {
             <View style={style.fotoIcon}>
               <ImageTemplate
                 src={profile?.picture || null}
-                defaultImg={noProfile}
+                defaultImg={picDefProfile}
                 style={style.IMGProfiles}
               />
             </View>
@@ -64,7 +64,7 @@ const Profile = ({navigation}) => {
           <View style={style.contProfileName}>
             <Text style={style.name}>{profile.fullName}</Text>
             <Text style={style.profesi}>
-              {profile.perofession ? profile.profession : 'Profession : -'}
+              {profile.profession ? profile.profession : '-Edit Profession-'}
             </Text>
           </View>
         </View>
@@ -80,10 +80,10 @@ const Profile = ({navigation}) => {
           <ScrollView horizontal={true}>
             <View style={style.ccContainer}>
               <View style={style.cardOutput}>
-                <Image style={style.IMGCards} source={card1} />
+                <Image style={style.IMGCards} source={picCard1} />
               </View>
               <View style={style.cardOutput}>
-                <Image style={style.IMGCards} source={card2} />
+                <Image style={style.IMGCards} source={picCard2} />
               </View>
             </View>
           </ScrollView>
@@ -117,14 +117,14 @@ const Profile = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   textHeader: {
@@ -174,7 +174,7 @@ const style = StyleSheet.create({
     width: 137,
     height: 137,
     borderWidth: 5,
-    borderColor: '#4c3f91',
+    borderColor: '#F0592C',
     borderRadius: 70,
     justifyContent: 'center',
     alignItems: 'center',

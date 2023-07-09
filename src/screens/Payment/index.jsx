@@ -70,7 +70,7 @@ const Payment = ({route, navigation}) => {
                 />
               </View>
               <View style={style.iconCard}>
-                <FAwesome name="credit-card-alt" size={20} color="#4c3f91" />
+                <FAwesome name="credit-card-alt" size={20} color="#F0592C" />
               </View>
               <View>
                 <Text style={style.textIcon}>Card</Text>
@@ -162,7 +162,7 @@ const Payment = ({route, navigation}) => {
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   containerOne: {
@@ -231,7 +231,7 @@ const style = StyleSheet.create({
     width: 12,
     height: 12,
     borderRadius: 6,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
   },
   cardOutput: {
     width: 335,
@@ -330,7 +330,7 @@ const style = StyleSheet.create({
     color: 'black',
   },
   touchCheckOut: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     width: 169,
     height: 55,
     borderRadius: 15,
@@ -344,7 +344,7 @@ const style = StyleSheet.create({
   },
   getOwn: {
     fontSize: 20,
-    color: '#4c3f91',
+    color: '#F0592C',
     fontFamily: 'Poppins-SemiBold',
   },
   getOwnCont: {

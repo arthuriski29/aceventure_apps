@@ -68,9 +68,9 @@ const Home = () => {
           {events.map(item => {
             return (
               <EventBox
-                key={`event-${item?.id}`}
-                dates={item?.date}
-                title={item?.title}
+                key={`events-${item?.id}`}
+                date={item?.date}
+                event={item?.event}
                 eventImage={item?.picture}
                 eventId={item?.id}
               />
@@ -99,7 +99,7 @@ const Home = () => {
                   <EventBox
                     key={`event-${item?.id}`}
                     dates={item?.date}
-                    title={item?.title}
+                    event={item?.event}
                     eventImage={item?.picture}
                     eventId={item?.id}
                   />
@@ -259,7 +259,7 @@ const style = StyleSheet.create({
   buttonUpcoming: {
     backgroundColor: 'white',
     borderWidth: 2,
-    borderColor: 'blue',
+    borderColor: '#F0592C',
     borderRadius: 10,
     marginTop: 20,
     marginBottom: 50,
@@ -270,7 +270,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
   },
   textButton: {
-    color: 'blue',
+    color: '#F0592C',
     fontWeight: 'bold',
   },
   contentUpcoming: {

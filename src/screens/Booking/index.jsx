@@ -103,7 +103,7 @@ const Booking = ({route, navigation}) => {
               </View>
               <View>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                  <FeatherIcon name="filter" size={35} color="#4c3f91" />
+                  <FeatherIcon name="filter" size={35} color="#F0592C" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -112,7 +112,7 @@ const Booking = ({route, navigation}) => {
             {sections.map(item => (
               <View key={`section-select-${item.id}`} style={style.contItem}>
                 <View style={style.contIcon}>
-                  <FAwesome name="ticket" size={25} color="#4c3f91" />
+                  <FAwesome name="ticket" size={25} color="#F0592C" />
                 </View>
                 <View style={style.contSect}>
                   <View>
@@ -180,7 +180,7 @@ const Booking = ({route, navigation}) => {
 const style = StyleSheet.create({
   container: {
     paddingTop: 30,
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     flex: 1,
   },
   wrapper: {
@@ -346,7 +346,7 @@ const style = StyleSheet.create({
     color: 'black',
   },
   touchCheckOut: {
-    backgroundColor: '#4c3f91',
+    backgroundColor: '#F0592C',
     width: 169,
     height: 40,
     borderRadius: 15,

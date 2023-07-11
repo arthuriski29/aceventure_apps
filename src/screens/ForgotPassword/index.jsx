@@ -26,7 +26,10 @@ const ForgotPassword = ({navigation}) => {
     try {
       const form = new URLSearchParams();
       form.append('email', values.email);
-      const {data} = await http().post('/auth/forgotPassword', form.toString());
+      const {data} = await http().post(
+        '/auth/forgot-password',
+        form.toString(),
+      );
       if (data?.message) {
         setSuccessMessage(data?.message);
         setTimeout(() => navigation.replace('ResetPassword'), 2000);

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import http from '../../helpers/http';
-import {event1, map} from '../../assets';
+import {event1, picMap} from '../../assets';
 import {ImageTemplate} from '../../components';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
@@ -38,10 +38,12 @@ const DetailEvent = ({route, navigation}) => {
     React.useCallback(() => {
       const eventId = {eventId: id};
       const qString = new URLSearchParams(eventId).toString();
+      console.log(qString);
       const fetchData = async () => {
         const {data} = await http(token).get(`/wishlist/check?${qString}`);
         const btnStatus = data.results;
-        if (btnStatus) {
+        // console.log(btnStatus);
+        if (btnStatus === true) {
           setWishlistButton(true);
         } else {
           setWishlistButton(false);
@@ -73,56 +75,6 @@ const DetailEvent = ({route, navigation}) => {
   const handlePressEvent = eventId => {
     navigation.navigate('Booking', {eventId});
   };
-
-  // React.useEffect(() => {
-  //   const eventId = {eventId: id};
-  //   const qString = new URLSearchParams(eventId).toString();
-  //   const checkWishlist = async () => {
-  //     const {data} = await http(token).get(`/wishlist/check?${qString}`);
-  //     console.log(data.results);
-  //     const btnStatus = data.results;
-  //     if (btnStatus) {
-  //       setWishlistButton(true);
-  //     }
-  //   };
-  //   updateStateWishlists();
-  //   checkWishlist();
-  // }, [id, token]);
-
-  // const updateStateWishlists = () => {
-  //   const eventId = {eventId: id};
-  //   const qString = new URLSearchParams(eventId).toString();
-  //   const checkBookmarks = async () => {
-  //     const {data} = await http(token).get(`/wishlist/check?${qString}`);
-  //     const btnStatus = data.results;
-  //     if (btnStatus) {
-  //       setWishlistButton(true);
-  //     } else {
-  //       setWishlistButton();
-  //     }
-  //   };
-  //   checkBookmarks();
-  // };
-
-  // const addRemoveWishlist = async event => {
-  //   event.preventDefault();
-  //   try {
-  //     const eventId = {eventId: id};
-  //     const qString = new URLSearchParams(eventId).toString();
-  //     const {data} = await http(token).post('/wishlist', qString);
-  //     console.log(data);
-  //     if (wishlistButton) {
-  //       setWishlistButton(false);
-  //     } else {
-  //       setWishlistButton(true);
-  //     }
-  //   } catch (err) {
-  //     const message = err?.response?.data?.message;
-  //     if (message) {
-  //       console.log(message);
-  //     }
-  //   }
-  // };
 
   return (
     <View style={style.container}>
@@ -163,9 +115,7 @@ const DetailEvent = ({route, navigation}) => {
               <View />
               <Text style={style.textContLoc}>
                 <FeatherIcon name="clock" size={25} color="red" />{' '}
-                {moment(eventDetail.date).format('LLLL').slice(0, 3)}
-                {', '}
-                {moment(eventDetail.date).format('LLL')}
+                {moment(eventDetail?.date).format('ddd, D MMM, h:mm A')}
               </Text>
             </View>
             <View>
@@ -178,15 +128,12 @@ const DetailEvent = ({route, navigation}) => {
         <View style={style.containerTextDetail}>
           <Text style={style.textEvents}>Event Detail</Text>
           <Text style={style.textDetailEvents}>
-            After his controversial art exhibition "Tear and Consume" back in
-            November 2018, in which guests were invited to tear up After his
-            controversial art exhibition "Tear and Consume" back in November
-            2018, in which guests were invited to tear up
+            {eventDetail?.descriptions}
           </Text>
         </View>
         <View style={style.containerTextDetail}>
           <Text style={style.textEvents}>Location</Text>
-          <Image source={map} style={style.IMGMaps} />
+          <Image source={picMap} style={style.IMGMaps} />
         </View>
         <View style={style.containerButton} />
       </ScrollView>

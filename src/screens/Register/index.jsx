@@ -2,16 +2,15 @@ import {
   View,
   Text,
   StyleSheet,
-  Alert,
   StatusBar,
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import React from 'react';
-import {Link} from '@react-navigation/native';
+// import {Link} from '@react-navigation/native';
 import globalStyles from '../../assets/styles';
-import {Input, Button} from '../../components';
+import {Input, Button, Alert} from '../../components';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {asyncRegister} from '../../redux/actions/auth';
@@ -37,17 +36,23 @@ const validationSchema = Yup.object({
 const Register = ({navigation}) => {
   const [toggleCheckBox, setToggleCheckBox] = React.useState(false);
   const dispatch = useDispatch();
+  const token = useSelector(state => state.auth.token);
   const successMessage = useSelector(state => state.auth.successMessage);
   const errorMessage = useSelector(state => state.auth.errorMessage);
 
   const doRegister = values => {
     dispatch(asyncRegister(values));
+    if (token) {
+      setTimeout(() => {
+        navigation.replace('Login');
+      }, 3000);
+    }
   };
 
   if (successMessage) {
     setTimeout(() => {
       dispatch(clearMessage());
-      navigation.replace('Login');
+      // navigation.replace('Login');
     }, 1500);
   }
   return (
@@ -68,9 +73,14 @@ const Register = ({navigation}) => {
           <View>
             <Text style={globalStyles.subTitle}>
               Already have an account?
-              <Link to="/Login" style={globalStyles.link}>
+              <Text
+                onPress={() => navigation.navigate('Login')}
+                style={globalStyles.link}>
                 Login
-              </Link>
+              </Text>
+              {/* <Link to="/Login" style={globalStyles.link}>
+                Login
+              </Link> */}
             </Text>
           </View>
           {successMessage && <Alert variant="success">{successMessage}</Alert>}

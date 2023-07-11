@@ -28,6 +28,7 @@ const validationSchema = Yup.object({
 const Login = () => {
   const dispatch = useDispatch();
   const errorMessage = useSelector(state => state.auth.errorMessage);
+  const successMessage = useSelector(state => state.auth.successMessage);
   const doLogin = values => {
     dispatch(asyncLogin(values));
   };
@@ -36,6 +37,7 @@ const Login = () => {
       dispatch(clearMessage());
     }, 5000);
   }
+
   return (
     <ScrollView style={globalStyles.wrapper}>
       <StatusBar
@@ -74,6 +76,10 @@ const Login = () => {
             touched,
           }) => (
             <View style={globalStyles.formGap}>
+              {successMessage && (
+                <Alert variant="success">{successMessage}</Alert>
+              )}
+              {errorMessage && <Alert variant="error">{errorMessage}</Alert>}
               <View style={globalStyles.inputGap}>
                 <Input
                   onChangeText={handleChange('email')}

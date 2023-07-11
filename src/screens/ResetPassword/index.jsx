@@ -17,7 +17,9 @@ const validationSchema = Yup.object({
   code: Yup.number().required('Code is required').positive().integer(),
   email: Yup.string().required('Email is Required!').email('Email is invalid!'),
   password: Yup.string().required('Password is Required'),
-  confirmPassword: Yup.string().required('Confirm Password is Required'),
+  confirmPassword: Yup.string()
+    .required('Confirm Password is Required')
+    .oneOf([Yup.ref('password'), null], 'Password must match'),
 });
 
 const ResetPassword = ({navigation}) => {
@@ -31,10 +33,10 @@ const ResetPassword = ({navigation}) => {
       form.append('email', values.email);
       form.append('password', values.password);
       form.append('confirmPassword', values.confirmPassword);
-      const {data} = await http().post('/auth/resetPassword', form.toString());
+      const {data} = await http().post('/auth/reset-password', form.toString());
       if (data?.message) {
         setSuccessMessage(data?.message);
-        setTimeout(() => navigation.replace('SignIn'), 2000);
+        setTimeout(() => navigation.replace('Login'), 2000);
       }
       // console.log(form.toString());
     } catch (error) {
@@ -134,7 +136,9 @@ const ResetPassword = ({navigation}) => {
               {errors.confirmPassword && touched.confirmPassword && (
                 <Text style={style.errorsText}>{errors.confirmPassword}</Text>
               )}
-              <Button onPress={handleSubmit} btnTitle="Reset" />
+              <Button onPress={handleSubmit} btnTitle="Reset">
+                Reset
+              </Button>
             </View>
           )}
         </Formik>

@@ -13,27 +13,32 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import FAwesome from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
 import http from '../../helpers/http';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Booking = ({route, navigation}) => {
+  const {reservationId, eventTitle} = route.params;
   const {eventId} = route.params;
   const token = useSelector(state => state.auth.token);
   const [sections, setSections] = React.useState([]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const getSections = async () => {
+        const {data} = await http(token).get('/section');
+        setSections(data.results);
+      };
+      getSections();
+    }, [token]),
+  );
+
   const [filledSection, setFilledSection] = React.useState({
     id: 0,
     quantity: 0,
   });
 
-  React.useEffect(() => {
-    const getSections = async () => {
-      const {data} = await http(token).get('/section');
-      setSections(data.results);
-    };
-    getSections();
-  }, [token]);
-
   const increment = id => {
-    if (filledSection.quantity >= 2) {
-      setFilledSection({id, quantity: 2});
+    if (filledSection.quantity >= 4) {
+      setFilledSection({id, quantity: 4});
     } else {
       setFilledSection({id, quantity: filledSection.quantity + 1});
     }
@@ -45,34 +50,37 @@ const Booking = ({route, navigation}) => {
       setFilledSection({id, quantity: filledSection.quantity - 1});
     }
   };
+  const selectedSection =
+    filledSection && sections.filter(item => item.id === filledSection.id)[0];
 
   const doReservation = async () => {
-    const form = new URLSearchParams({
-      eventId,
-      sectionId: filledSection.id,
-      quantity: filledSection.quantity,
-    }).toString();
-    const {data} = await http(token).post('/reservation', form);
-
-    navigation.navigate('Payment', {
-      state: {
-        eventId,
-        eventName: data.results.events.title,
-        reservationId: data.results.id,
-        sectionName: data.results.sectionName,
-        quantity: data.results.quantity,
-        totalPayment: data.results.totalPrice,
-      },
-      replace: true,
-    });
+    try {
+      const sectionId = selectedSection?.id;
+      const quantity = filledSection.quantity;
+      const form = new URLSearchParams({
+        reservationId,
+        sectionId,
+        quantity,
+      }).toString();
+      const {data} = await http(token).post('/reservations/ticket', form);
+      if (data.success === true) {
+        navigation.navigate('Payment', {
+          reservationId: reservationId,
+          eventTitle: eventTitle,
+          section: selectedSection?.name,
+          quantity: filledSection.quantity,
+          totalPayment: selectedSection?.price * filledSection.quantity,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      throw Error('ReservationButton_have_trouble');
+    }
   };
 
   const handlePressEvent = id => {
     navigation.navigate('DetailEvent', {id});
   };
-
-  const selectedSection =
-    filledSection && sections.filter(item => item.id === filledSection.id)[0];
 
   return (
     <View style={style.container}>
@@ -90,7 +98,12 @@ const Booking = ({route, navigation}) => {
       </View>
       <View style={style.wrapper}>
         <View style={style.secTickContainer}>
-          <Image source={picTicket} style={style.imageSection} />
+          <Image
+            source={picTicket}
+            height={50}
+            width={50}
+            style={style.imageSection}
+          />
         </View>
         <View style={style.containerCheckout}>
           <View style={style.ticketHeader}>
@@ -211,30 +224,30 @@ const style = StyleSheet.create({
   },
   secTickContainer: {
     width: '100%',
-    height: 340,
+    height: 280,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 25,
   },
   imageSection: {
-    width: '100%',
-    height: '100%',
+    width: '80%',
+    height: '80%',
   },
   ticketVariant: {
     height: 250,
   },
   sectionPayment: {
     width: '100%',
-    height: 55,
+    height: 40,
     backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    bottom: 10,
+    alignSelf: 'center',
+    bottom: 0,
   },
   containerCheckout: {
-    paddingVertical: 20,
-    gap: 15,
+    paddingVertical: 10,
+    gap: 10,
   },
   ticketHeader: {
     flexDirection: 'row',
@@ -347,7 +360,7 @@ const style = StyleSheet.create({
   },
   touchCheckOut: {
     backgroundColor: '#F0592C',
-    width: 169,
+    width: 100,
     height: 40,
     borderRadius: 15,
     justifyContent: 'center',
@@ -363,7 +376,7 @@ const style = StyleSheet.create({
   },
   getOwnCont: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
   },
 });
 

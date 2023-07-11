@@ -39,7 +39,10 @@ const ChangePassword = ({navigation}) => {
         newPassword,
         confirmPassword,
       });
-      const {data} = await http(token).post('/changePassword', form.toString());
+      const {data} = await http(token).patch(
+        '/changePassword',
+        form.toString(),
+      );
       console.log(data);
       if (data?.message) {
         setSuccessMessage(data?.message);

@@ -20,7 +20,7 @@ import {
   faPlus,
   faUnlock,
 } from '@fortawesome/free-solid-svg-icons';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+// import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
 const Profile = ({navigation}) => {
@@ -72,7 +72,9 @@ const Profile = ({navigation}) => {
           <View style={style.contProfileName}>
             <Text style={style.name}>{profile.fullName}</Text>
             <Text style={style.profesi}>
-              {profile.profession ? profile.profession : '-Edit Profession-'}
+              {profile.profession
+                ? profile.profession
+                : '--Insert Profession--'}
             </Text>
           </View>
         </View>
@@ -184,7 +186,7 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
-    gap: 10,
+    gap: 2,
   },
   foto: {
     width: 137,

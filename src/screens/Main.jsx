@@ -16,6 +16,7 @@ import {
   MyWishlist,
   ManageEvent,
   DetailTransaction,
+  CreateEvent,
 } from './index';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -134,6 +135,11 @@ function MyDrawer() {
       <Drawer.Screen
         name="DetailTransaction"
         component={DetailTransaction}
+        options={({drawerLabel: () => null}, {drawerItemStyle: {height: 0}})}
+      />
+      <Drawer.Screen
+        name="CreateEvent"
+        component={CreateEvent}
         options={({drawerLabel: () => null}, {drawerItemStyle: {height: 0}})}
       />
 

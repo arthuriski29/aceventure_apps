@@ -30,6 +30,9 @@ const ManageEvent = ({navigation}) => {
   const handlePressEvent = () => {
     navigation.navigate('Profile');
   };
+  const handleCreate = () => {
+    navigation.navigate('CreateEvent');
+  };
 
   // React.useEffect(() => {
   //   async function getEventByMe() {
@@ -55,7 +58,12 @@ const ManageEvent = ({navigation}) => {
         <View style={style.contentHeader} />
       </View>
       <ScrollView style={style.containerWishlist}>
-        <BtnMinOpacity icon="plus-circle" text="Create" />
+        <View style={style.contBtnTopManage}>
+          <TouchableOpacity style={style.btnTopManage} onPress={handleCreate}>
+            <FeatherIcon name="plus-circle" size={25} color="#F0592C" />
+            <Text style={style.textTopManage}>Create</Text>
+          </TouchableOpacity>
+        </View>
         <View style={style.wrapperWishlist}>
           {eventByMe.length < 1 && (
             <HandleNullItem noItem="event found" noItemSub="event" />
@@ -66,9 +74,9 @@ const ManageEvent = ({navigation}) => {
                 key={`booiking-manage-${item.id}`}
                 dateBoxDate={item?.date}
                 dateBoxDay={item?.date}
-                eventSpecId={item.eventId}
-                title={item.title}
-                location={item.location}
+                eventSpecId={item?.eventId}
+                title={item?.event}
+                location={item?.location}
                 date={item?.date}
                 day={item?.date}
                 forManageEvent
@@ -92,7 +100,7 @@ const style = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Poppins-Bold',
     letterSpacing: 1,
-    color: 'white',
+    color: 'black',
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -153,6 +161,25 @@ const style = StyleSheet.create({
     fontFamily: 'Poppins-SemiBold',
     fontSize: 12,
     textTransform: 'capitalize',
+  },
+  contBtnTopManage: {
+    marginTop: 10,
+    marginBottom: 30,
+  },
+  btnTopManage: {
+    width: 140,
+    height: 55,
+    backgroundColor: '#F1EAFF',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 15,
+    gap: 7,
+  },
+  textTopManage: {
+    color: '#F0592C',
+    fontFamily: 'Poppins-SemiBold',
+    fontSize: 13,
   },
 });
 export default ManageEvent;

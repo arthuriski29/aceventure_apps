@@ -39,7 +39,7 @@ const style = StyleSheet.create({
     gap: 15,
   },
   errorText: {
-    color: 'white',
+    color: 'red',
   },
   successWrapper: {
     backgroundColor: '#8dfc9c',

@@ -16,10 +16,14 @@ import http from '../../helpers/http';
 import {useFocusEffect} from '@react-navigation/native';
 
 const Booking = ({route, navigation}) => {
-  const {reservationId, eventTitle} = route.params;
-  const {eventId} = route.params;
+  const {id: eventId} = route.params;
+  // console.log(eventId);
   const token = useSelector(state => state.auth.token);
   const [sections, setSections] = React.useState([]);
+  const [filledSection, setFilledSection] = React.useState({
+    id: 0,
+    quantity: 0,
+  });
 
   useFocusEffect(
     React.useCallback(() => {
@@ -30,11 +34,6 @@ const Booking = ({route, navigation}) => {
       getSections();
     }, [token]),
   );
-
-  const [filledSection, setFilledSection] = React.useState({
-    id: 0,
-    quantity: 0,
-  });
 
   const increment = id => {
     if (filledSection.quantity >= 4) {
@@ -58,18 +57,24 @@ const Booking = ({route, navigation}) => {
       const sectionId = selectedSection?.id;
       const quantity = filledSection.quantity;
       const form = new URLSearchParams({
-        reservationId,
+        eventId,
         sectionId,
         quantity,
       }).toString();
-      const {data} = await http(token).post('/reservations/ticket', form);
+      console.log([sectionId, quantity, form]);
+      const {data} = await http(token).post('/reservations', form);
+      const dataRes = data.results;
+      console.log(dataRes);
       if (data.success === true) {
         navigation.navigate('Payment', {
-          reservationId: reservationId,
-          eventTitle: eventTitle,
-          section: selectedSection?.name,
-          quantity: filledSection.quantity,
-          totalPayment: selectedSection?.price * filledSection.quantity,
+          state: {
+            eventId,
+            eventName: dataRes.events.titlle,
+            reservationId: dataRes.id,
+            sectionName: dataRes.sectionName,
+            quantity: dataRes.quantity,
+            totalPayment: dataRes.totalPrice,
+          },
         });
       }
     } catch (error) {
@@ -79,7 +84,7 @@ const Booking = ({route, navigation}) => {
   };
 
   const handlePressEvent = id => {
-    navigation.navigate('DetailEvent', {id});
+    navigation.navigate('DetailEvent', {id: id});
   };
 
   return (

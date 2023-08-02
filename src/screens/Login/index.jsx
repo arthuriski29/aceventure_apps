@@ -2,7 +2,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Alert,
   ScrollView,
   StatusBar,
   TouchableOpacity,
@@ -10,7 +9,7 @@ import {
 import React from 'react';
 import {Link} from '@react-navigation/native';
 import globalStyles from '../../assets/styles';
-import {Input, Button} from '../../components';
+import {Input, Button, Alert} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
 import {asyncLogin} from '../../redux/actions/auth';
 import {clearMessage} from '../../redux/reducers/auth';
@@ -25,18 +24,26 @@ const validationSchema = Yup.object({
   password: Yup.string().required('Password is required'),
 });
 
-const Login = () => {
+const Login = ({navigation}) => {
+  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
   const errorMessage = useSelector(state => state.auth.errorMessage);
   const successMessage = useSelector(state => state.auth.successMessage);
+  React.useEffect(() => {
+    if (token) {
+      setTimeout(() => {
+        navigation.replace('Home');
+      }, 1200);
+    }
+  }, [token, navigation]);
   const doLogin = values => {
     dispatch(asyncLogin(values));
+    if (errorMessage) {
+      setTimeout(() => {
+        dispatch(clearMessage());
+      }, 5000);
+    }
   };
-  if (errorMessage) {
-    setTimeout(() => {
-      dispatch(clearMessage());
-    }, 5000);
-  }
 
   return (
     <ScrollView style={globalStyles.wrapper}>
@@ -60,7 +67,7 @@ const Login = () => {
                 Register
               </Link>
             </Text>
-            {errorMessage && <Alert variant="error">{errorMessage}</Alert>}
+            {/* {errorMessage && <Alert variant="error">{errorMessage}</Alert>} */}
           </View>
         </View>
         <Formik

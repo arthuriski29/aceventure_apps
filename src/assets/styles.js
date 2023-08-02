@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  descInput: {
+    borderWidth: 1,
+    height: 100,
+    paddingHorizontal: 20,
+    borderColor: '#F0592C',
+    borderRadius: 15,
+  },
   inputComponent: {
     flex: 1,
   },

@@ -81,7 +81,7 @@ const MyWishlist = ({navigation}) => {
                 dateBoxDate={item?.date}
                 dateBoxDay={item?.date}
                 eventSpecId={item.eventId}
-                title={item.title}
+                title={item.event}
                 location={item.location}
                 date={item?.date}
                 day={item?.date}

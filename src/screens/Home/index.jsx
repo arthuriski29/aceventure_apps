@@ -98,7 +98,7 @@ const Home = () => {
                 <View style={style.contentUpcoming}>
                   <EventBox
                     key={`event-${item?.id}`}
-                    dates={item?.date}
+                    date={item?.date}
                     event={item?.event}
                     eventImage={item?.picture}
                     eventId={item?.id}

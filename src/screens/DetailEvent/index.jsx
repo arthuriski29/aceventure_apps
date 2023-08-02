@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import http from '../../helpers/http';
-import {event1, picMap} from '../../assets';
+import {picEvent, picMap} from '../../assets';
 import {ImageTemplate} from '../../components';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
@@ -16,42 +16,51 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import FAwesome from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
 import {ScrollView} from 'react-native-gesture-handler';
-import {useFocusEffect} from '@react-navigation/native';
+// import {useFocusEffect} from '@react-navigation/native';
 
 const DetailEvent = ({route, navigation}) => {
   const {id} = route.params;
+  // console.log(id);
   const token = useSelector(state => state.auth.token);
   const [eventDetail, setEventDetail] = React.useState({});
+  // const [reservation, setReservation] = React.useState({});
   const [wishlistButton, setWishlistButton] = React.useState(false);
 
   React.useEffect(() => {
     const getEventData = async () => {
       const {data} = await http().get(`/events/${id}`);
       setEventDetail(data.results);
+      // console.log(data.results);
     };
     if (id) {
       getEventData(id);
     }
   }, [id]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      const eventId = {eventId: id};
-      const qString = new URLSearchParams(eventId).toString();
-      console.log(qString);
-      const fetchData = async () => {
-        const {data} = await http(token).get(`/wishlist/check?${qString}`);
-        const btnStatus = data.results;
-        // console.log(btnStatus);
-        if (btnStatus === true) {
-          setWishlistButton(true);
-        } else {
-          setWishlistButton(false);
-        }
-      };
-      fetchData();
-    }, [token, id]),
-  );
+  // React.useEffect(() => {
+  //   const getReservationData = async () => {
+  //     const {data} = await http().get('/reservations/');
+  //     setReservation(data.results);
+  //   };
+  //   getReservationData();
+  // }, []);
+
+  React.useEffect(() => {
+    const eventId = {eventId: id};
+    const qString = new URLSearchParams(eventId).toString();
+    // console.log(qString);
+    const fetchData = async () => {
+      const {data} = await http(token).get(`/wishlist/check?${qString}`);
+      const btnStatus = data.results;
+      // console.log(btnStatus);
+      if (btnStatus === true) {
+        setWishlistButton(true);
+      } else {
+        setWishlistButton(false);
+      }
+    };
+    fetchData();
+  }, [token, id]);
 
   const addRemoveWishlist = async () => {
     try {
@@ -71,16 +80,21 @@ const DetailEvent = ({route, navigation}) => {
       }
     }
   };
-
+  // console.log(id);
   const handlePressEvent = eventId => {
-    navigation.navigate('Booking', {eventId});
+    // console.log(eventId);
+    navigation.navigate('Booking', {id: eventId});
+    // console.log(eventId);
   };
 
   return (
     <View style={style.container}>
       <StatusBar translucent={true} backgroundColor="transparent" />
       <View style={style.containerImg}>
-        <ImageTemplate src={eventDetail?.picture || null} defaultImg={event1} />
+        <ImageTemplate
+          src={eventDetail?.picture || null}
+          defaultImg={picEvent}
+        />
         <View style={style.drawerContainer}>
           <View>
             <TouchableOpacity onPress={() => navigation.navigate('Home')}>
@@ -140,7 +154,7 @@ const DetailEvent = ({route, navigation}) => {
       <View style={style.btnContainer}>
         <TouchableOpacity
           style={style.touchButton}
-          onPress={() => handlePressEvent(eventDetail.id)}>
+          onPress={() => handlePressEvent(eventDetail?.eventId)}>
           <Text style={style.textTouch}>Buy Tickets</Text>
         </TouchableOpacity>
       </View>

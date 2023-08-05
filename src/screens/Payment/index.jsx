@@ -26,7 +26,6 @@ const Payment = ({route, navigation}) => {
   };
 
   const doPayment = async () => {
-    // console.log(selectedPayment)
     const {reservationId} = state;
     const form = new URLSearchParams({
       reservationId,

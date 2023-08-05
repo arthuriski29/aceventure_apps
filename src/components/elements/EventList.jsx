@@ -21,9 +21,6 @@ const EventList = ({
   funcEventCreateUpdate,
   funcEventCreateDelete,
 }) => {
-  console.log(`${dateBoxDay}, ini datebox nya`);
-  console.log(`${title}, ini title nya`);
-
   return (
     <View style={style.wishlistContainer} key={keyMaps}>
       <View style={style.sectionWishlistLeft}>

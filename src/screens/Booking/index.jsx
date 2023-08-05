@@ -69,7 +69,7 @@ const Booking = ({route, navigation}) => {
         navigation.navigate('Payment', {
           state: {
             eventId,
-            eventName: dataRes.events.titlle,
+            eventName: dataRes.events.title,
             reservationId: dataRes.id,
             sectionName: dataRes.sectionName,
             quantity: dataRes.quantity,

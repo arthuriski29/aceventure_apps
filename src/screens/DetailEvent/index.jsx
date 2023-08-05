@@ -16,43 +16,32 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import FAwesome from 'react-native-vector-icons/FontAwesome';
 import {useSelector} from 'react-redux';
 import {ScrollView} from 'react-native-gesture-handler';
-// import {useFocusEffect} from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 
 const DetailEvent = ({route, navigation}) => {
   const {id} = route.params;
-  // console.log(id);
   const token = useSelector(state => state.auth.token);
   const [eventDetail, setEventDetail] = React.useState({});
-  // const [reservation, setReservation] = React.useState({});
   const [wishlistButton, setWishlistButton] = React.useState(false);
 
-  React.useEffect(() => {
-    const getEventData = async () => {
-      const {data} = await http().get(`/events/${id}`);
-      setEventDetail(data.results);
-      // console.log(data.results);
-    };
-    if (id) {
-      getEventData(id);
-    }
-  }, [id]);
-
-  // React.useEffect(() => {
-  //   const getReservationData = async () => {
-  //     const {data} = await http().get('/reservations/');
-  //     setReservation(data.results);
-  //   };
-  //   getReservationData();
-  // }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      const getEventData = async () => {
+        const {data} = await http().get(`/events/${id}`);
+        setEventDetail(data.results);
+      };
+      if (id) {
+        getEventData(id);
+      }
+    }, [id]),
+  );
 
   React.useEffect(() => {
     const eventId = {eventId: id};
     const qString = new URLSearchParams(eventId).toString();
-    // console.log(qString);
     const fetchData = async () => {
       const {data} = await http(token).get(`/wishlist/check?${qString}`);
       const btnStatus = data.results;
-      // console.log(btnStatus);
       if (btnStatus === true) {
         setWishlistButton(true);
       } else {
@@ -80,11 +69,8 @@ const DetailEvent = ({route, navigation}) => {
       }
     }
   };
-  // console.log(id);
   const handlePressEvent = eventId => {
-    // console.log(eventId);
     navigation.navigate('Booking', {id: eventId});
-    // console.log(eventId);
   };
 
   return (

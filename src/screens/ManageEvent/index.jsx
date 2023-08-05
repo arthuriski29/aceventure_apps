@@ -33,6 +33,12 @@ const ManageEvent = ({navigation}) => {
   const handleCreate = () => {
     navigation.navigate('CreateEvent');
   };
+  const handleEventDetail = id => {
+    navigation.navigate('DetailEvent', {id});
+  };
+  const handleEventUpdate = id => {
+    navigation.navigate('UpdateEvent', {id});
+  };
 
   // React.useEffect(() => {
   //   async function getEventByMe() {
@@ -80,6 +86,13 @@ const ManageEvent = ({navigation}) => {
                 date={item?.date}
                 day={item?.date}
                 forManageEvent
+                funcEventCreateDetail={() => {
+                  handleEventDetail(item?.id);
+                }}
+                funcEventCreateUpdate={() => {
+                  handleEventUpdate(item?.id);
+                }}
+                // funcEventCreateDelete={()=>{handleEventDelete(item?.id)}}
                 // addRemoveWishlist={() => addRemoveWishlist(`${item.eventId}`)}
               />
             );

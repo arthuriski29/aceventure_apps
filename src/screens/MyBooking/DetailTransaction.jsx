@@ -22,7 +22,7 @@ const DetailTransaction = ({route, navigation}) => {
       const {data} = await http(token).get(`/history/${id}`);
       setDetailTransaction(data.results);
     };
-    getDetailTransaction(id);
+    getDetailTransaction();
   }, [token, id]);
   const handlePressEvent = () => {
     navigation.navigate('MyBooking');
@@ -52,13 +52,14 @@ const DetailTransaction = ({route, navigation}) => {
             <View style={style.sectInfoPayment}>
               <Text style={style.textLite}>Grand Total</Text>
               <Text style={style.textDetaiBold}>
-                IDR {detailTransaction.totalPrice}
+                {detailTransaction.totalPrice}
               </Text>
             </View>
             <View style={style.sectInfoPayment}>
               <Text style={style.textLite}>Order Paid Date</Text>
               <Text style={style.textDetaiBold}>
-                {moment(detailTransaction.paymentDate).format('DD/MM/YY')}
+                {moment(detailTransaction.paymentDate).format('DD/MM/YY')},
+                {moment(detailTransaction.paymentDate).format('LTS')}
               </Text>
             </View>
           </View>
@@ -67,9 +68,7 @@ const DetailTransaction = ({route, navigation}) => {
             <Text style={style.textDetaiBold}>Order Details</Text>
             <View style={style.containerInfoPaymentBetween}>
               <View style={style.sectInfoPayment}>
-                <Text style={style.textLite}>
-                  {detailTransaction.title} - Tickets
-                </Text>
+                <Text style={style.textLite}>{detailTransaction.title}</Text>
                 <Text style={style.textLite}>
                   {detailTransaction.location}, Indonesia
                 </Text>
@@ -80,11 +79,12 @@ const DetailTransaction = ({route, navigation}) => {
                 </Text>
               </View>
               <View style={style.itemEnd}>
+                <Text style={style.textLite}>Tickets</Text>
                 <Text style={style.textLite}>
                   x{detailTransaction.quantity}
                 </Text>
                 <Text style={style.textLiteUpp}>
-                  IDR {detailTransaction.ticketPrice}
+                  {`Rp ${detailTransaction.price},-`}
                 </Text>
               </View>
             </View>
@@ -95,25 +95,21 @@ const DetailTransaction = ({route, navigation}) => {
             <View style={style.containerInfoPaymentBetweenList}>
               <Text style={style.textLite}>payment method</Text>
               <View style={style.itemEnd}>
-                <Text style={style.textLite}>
-                  {detailTransaction.paymentMethod}
-                </Text>
+                <Text style={style.textLite}>{detailTransaction.payment}</Text>
               </View>
             </View>
             <View style={style.containerInfoPaymentBetweenList}>
               <Text style={style.textLite}>section</Text>
               <View style={style.itemEnd}>
                 <Text style={style.textLiteUpp}>
-                  {detailTransaction.ticketSection}
+                  {detailTransaction.section}
                 </Text>
               </View>
             </View>
             <View style={style.containerInfoPaymentBetweenList}>
               <Text style={style.textLite}>ticket price</Text>
               <View style={style.itemEnd}>
-                <Text style={style.textLiteUpp}>
-                  IDR {detailTransaction.ticketPrice}
-                </Text>
+                <Text style={style.textLiteUpp}>{detailTransaction.price}</Text>
               </View>
             </View>
             <View style={style.containerInfoPaymentBetweenList}>
@@ -128,7 +124,7 @@ const DetailTransaction = ({route, navigation}) => {
               <Text style={style.textLiteBold}>Grand Total</Text>
               <View style={style.itemEnd}>
                 <Text style={style.textLiteUppBold}>
-                  IDR {detailTransaction.totalPrice}
+                  {detailTransaction.totalPrice}
                 </Text>
               </View>
             </View>

@@ -10,3 +10,4 @@ npm method instead of yarn
 
 # Running On
 support only for android 5++
+ios not supported

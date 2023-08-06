@@ -16,6 +16,7 @@ import ManageEvent from './ManageEvent';
 import DetailTransaction from './MyBooking/DetailTransaction';
 import CreateEvent from './ManageEvent/CreateEvent';
 import UpdateEvent from './ManageEvent/UpdateEvent';
+import SearchEvent from './Home/SearchEvent';
 
 export {
   SplashScreen,
@@ -36,4 +37,5 @@ export {
   DetailTransaction,
   CreateEvent,
   UpdateEvent,
+  SearchEvent,
 };

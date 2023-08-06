@@ -122,7 +122,7 @@ const CreateEvent = ({navigation}) => {
         },
       });
       navigation.navigate('ManageEvent');
-      setSelectedPicture('');
+      setSelectedPicture();
     } catch (error) {
       console.log(error.message);
     }

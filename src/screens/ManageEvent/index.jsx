@@ -20,7 +20,7 @@ const ManageEvent = ({navigation}) => {
   useFocusEffect(
     React.useCallback(() => {
       const fetchData = async () => {
-        const {data} = await http(token).get('/events/manage');
+        const {data} = await http(token).get('/events/manage?limit=30');
         setEventByMe(data.results);
       };
       fetchData();
@@ -38,6 +38,19 @@ const ManageEvent = ({navigation}) => {
   };
   const handleEventUpdate = id => {
     navigation.navigate('UpdateEvent', {id});
+  };
+  const handleEventDelete = async id => {
+    try {
+      console.log(id);
+      const {data} = await http(token).delete(`/events/manage/${id}`);
+      console.log(data);
+      setEventByMe(eventByMe);
+    } catch (error) {
+      const message = error?.response?.data.message;
+      if (message) {
+        console.log(message);
+      }
+    }
   };
 
   // React.useEffect(() => {
@@ -91,6 +104,9 @@ const ManageEvent = ({navigation}) => {
                 }}
                 funcEventCreateUpdate={() => {
                   handleEventUpdate(item?.id);
+                }}
+                funcEventCreateDelete={() => {
+                  handleEventDelete(item?.id);
                 }}
                 // funcEventCreateDelete={()=>{handleEventDelete(item?.id)}}
                 // addRemoveWishlist={() => addRemoveWishlist(`${item.eventId}`)}

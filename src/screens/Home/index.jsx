@@ -21,7 +21,7 @@ const Home = () => {
   const [events, setEvent] = React.useState([]);
   React.useEffect(() => {
     async function getEvent() {
-      const {data} = await http().get('/events?sort=date&sortBy=asc');
+      const {data} = await http().get('/events?sort=date&sortBy=asc&limit=25');
       setEvent(data.results);
     }
     getEvent();
@@ -100,9 +100,10 @@ const Home = () => {
                     key={`event-${item?.id}`}
                     date={item?.date}
                     event={item?.event}
-                    eventImage={item?.picture}
+                    eventImage={item?.picture || null}
                     eventId={item?.id}
                   />
+
                   <TouchableOpacity style={style.buttonUpcoming}>
                     <Text style={style.textButton}>
                       Show All {itemsByDate.length} Events

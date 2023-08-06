@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
+import {picSplash} from '../../assets';
+import ImageTemplate from './ImageTemplate';
 
 const EventBox = ({date, event, eventImage, eventId, ...rest}) => {
   const navigation = useNavigation();
@@ -12,7 +14,15 @@ const EventBox = ({date, event, eventImage, eventId, ...rest}) => {
   };
   return (
     <View style={style.containerTextNew}>
-      <Image style={style.eventImages} source={{uri: eventImage}} />
+      {eventImage !== null ? (
+        <Image style={style.eventImages} source={{uri: eventImage}} />
+      ) : (
+        <ImageTemplate
+          src={null}
+          defaultImg={picSplash}
+          style={style.eventImages}
+        />
+      )}
 
       <View style={style.wrapAllContent}>
         <LinearGradient

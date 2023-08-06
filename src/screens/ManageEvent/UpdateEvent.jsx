@@ -19,7 +19,7 @@ import {Formik} from 'formik';
 import moment from 'moment';
 import DatePicker from 'react-native-date-picker';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {IMGEventDummy} from '../../assets';
+import {picSplash} from '../../assets';
 
 const UpdateEvent = ({route, navigation}) => {
   const {id} = route.params;
@@ -211,7 +211,7 @@ const UpdateEvent = ({route, navigation}) => {
                       ) : (
                         <ImageTemplate
                           src={detailEvent?.picture || null}
-                          defaultImg={IMGEventDummy}
+                          defaultImg={picSplash}
                           style={style.IMGProfiles}
                         />
                       )}

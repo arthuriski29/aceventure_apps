@@ -18,6 +18,7 @@ import {
   DetailTransaction,
   CreateEvent,
   UpdateEvent,
+  SearchEvent,
 } from './index';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -146,6 +147,11 @@ function MyDrawer() {
       <Drawer.Screen
         name="UpdateEvent"
         component={UpdateEvent}
+        options={({drawerLabel: () => null}, {drawerItemStyle: {height: 0}})}
+      />
+      <Drawer.Screen
+        name="SearchEvent"
+        component={SearchEvent}
         options={({drawerLabel: () => null}, {drawerItemStyle: {height: 0}})}
       />
 

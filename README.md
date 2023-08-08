@@ -1,6 +1,6 @@
 
 # Archive
-![Logo Archive](src/asset/images/splash.png)
+![Logo Archive](src/assets/images/splash.png)
 
 #About The Project
 
@@ -34,13 +34,13 @@ Web application For Reservation tickets and Create events
 # How to use
 
 ##Login Page
-![Login](src/asset/images/login.jpg)
+![Login](src/assets/images/login.jpg)
 
 ##Home Page
-![Home](src/asset/images/home.jpg)
+![Home](src/assets/images/home.jpg)
 
 ##Pofile Page
-![Profile](src/asset/images/edit-profile.jpg)
+![Profile](src/assets/images/edit-profile.jpg)
 
 ##Create events
-![Create Events](src/asset/images/create-event.jpg)
+![Create Events](src/assets/images/create-event.jpg)

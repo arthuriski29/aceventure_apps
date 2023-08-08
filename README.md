@@ -1,13 +1,46 @@
-# aceventure_apps
-ver 1.0.0 release apk
-an apps for event ticketing
 
-# technology
--react: 18.2.0
--react-native: 0.72.0
+# Archive
+![Logo Archive](src/asset/images/splash.png)
 
-npm method instead of yarn
+#About The Project
 
-# Running On
-support only for android 5++
-ios not supported
+Web application For Reservation tickets and Create events
+
+# Feature
+
+- Up-to-date and reliable Events Organizing
+- Reservation events and create events
+- And more
+
+# Built with
+
+- [Forntend]()
+1. [React Native](https://reactnative.dev/)
+
+- [Backend]()
+1. [Node js](https://nodejs.org/en/)
+2. [Express js](https://expressjs.com/en/starter/installing.html)
+
+# Technologies
+- [Redux](https://redux.js.org/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Argon](https://www.npmjs.com/package/argon2)
+- [jwt token](https://www.npmjs.com/package/jsonwebtoken)
+- [Multer](https://www.npmjs.com/package/multer)
+- [Moment](https://momentjs.com/)
+- [Formik](https://formik.org/)
+
+
+# How to use
+
+##Login Page
+![Login](src/asset/images/login.jpg)
+
+##Home Page
+![Home](src/asset/images/home.jpg)
+
+##Pofile Page
+![Profile](src/asset/images/edit-profile.jpg)
+
+##Create events
+![Create Events](src/asset/images/create-event.jpg)

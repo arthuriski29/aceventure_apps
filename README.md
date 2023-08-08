@@ -4,7 +4,7 @@
 
 #About The Project
 
-Web application For Reservation tickets and Create events
+Mobile App for Reservation tickets and Create Events
 
 # Feature
 
@@ -14,7 +14,7 @@ Web application For Reservation tickets and Create events
 
 # Built with
 
-- [Forntend]()
+- [Frontend]()
 1. [React Native](https://reactnative.dev/)
 
 - [Backend]()

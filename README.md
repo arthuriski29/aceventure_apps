@@ -21,7 +21,7 @@
 </div>
 
 
-#About The Project
+# About The Project
 
 Mobile App for Reservation tickets and Create Events
 

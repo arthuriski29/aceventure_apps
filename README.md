@@ -10,17 +10,6 @@
   </tr>
 </table>
 
-## Login Page
-![Login](src/assets/images/login.jpg)
-## Home Page
-![Home](src/assets/images/home.jpg)
-## Profile Page
-![Profile](src/assets/images/edit-profile.jpg)
-## Create events
-![Create Events](src/assets/images/create-event.jpg)
-  
-
-
 # About The Project
 
 Mobile App for Reservation tickets and Create Events
@@ -50,4 +39,28 @@ Mobile App for Reservation tickets and Create Events
 - [Formik](https://formik.org/)
 
 
-# How to use
+# How to use (Locally)
+
+Clone the project
+
+```bash
+  git clone https://github.com/arthuriski29/aceventure_apps
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```

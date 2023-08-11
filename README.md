@@ -1,6 +1,16 @@
 
-# Archive
-![Logo Archive](src/assets/images/splash.png)
+# Display
+## Login Page
+![Login](src/assets/images/login.jpg)
+
+## Home Page
+![Home](src/assets/images/home.jpg)
+
+## Profile Page
+![Profile](src/assets/images/edit-profile.jpg)
+
+## Create events
+![Create Events](src/assets/images/create-event.jpg)
 
 #About The Project
 
@@ -32,15 +42,3 @@ Mobile App for Reservation tickets and Create Events
 
 
 # How to use
-
-## Login Page
-![Login](src/assets/images/login.jpg)
-
-## Home Page
-![Home](src/assets/images/home.jpg)
-
-## Pofile Page
-![Profile](src/assets/images/edit-profile.jpg)
-
-## Create events
-![Create Events](src/assets/images/create-event.jpg)

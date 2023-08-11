@@ -33,14 +33,14 @@ Mobile App for Reservation tickets and Create Events
 
 # How to use
 
-##Login Page
+## Login Page
 ![Login](src/assets/images/login.jpg)
 
-##Home Page
+## Home Page
 ![Home](src/assets/images/home.jpg)
 
-##Pofile Page
+## Pofile Page
 ![Profile](src/assets/images/edit-profile.jpg)
 
-##Create events
+## Create events
 ![Create Events](src/assets/images/create-event.jpg)

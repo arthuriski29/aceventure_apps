@@ -60,7 +60,7 @@ Install dependencies
 ```
 
 For debugging mode, make sure you plugged in your phone device with usb-debugging turned on, and set [adb](https://www.xda-developers.com/install-adb-windows-macos-linux/) setting.
-To check adb devices connected with your computer, tyoe in your console :
+To check adb devices connected with your computer, type in your console :
 ```bash
   adb devices
 ```

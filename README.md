@@ -64,13 +64,13 @@ To check adb devices connected with your computer, type in your console :
 ```bash
   adb devices
 ```
-if adb is connected, it should display:
+if adb is connected, it should display :
 ```bash
   List of devices attached
   [your_device_code] device
 ```
 Then
-## 5. Start debugging and Install debug in your phone
+## 5. Start debugging and it will automatically installed debug in your phone
 
 ```bash
   react-native run android

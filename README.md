@@ -3,8 +3,10 @@
 
 <table>
   <tr>
-    <td valign="top">## Login Page<img src="src/assets/images/login.jpg"/></td>
-    <td valign="top"><img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&title_color=ffffff&icon_color=34abeb&text_color=daf7dc&bg_color=151515"/></td>
+    <td valign="top">Login Page<img src="src/assets/images/login.jpg"/></td>
+    <td valign="top">Home Page<img src="src/assets/images/home.jpg"/></td>
+    <td valign="top">Profile Page<img src="src/assets/images/edit-profile.jpg"/></td>
+    <td valign="top">Create Event Page<img src="src/assets/images/create-event.jpg"/></td>
   </tr>
 </table>
 

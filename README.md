@@ -1,16 +1,25 @@
 
 # Display
-## Login Page
-![Login](src/assets/images/login.jpg)
 
-## Home Page
-![Home](src/assets/images/home.jpg)
+<div style='{display: flex;}'>
+  <div>
+    ## Login Page
+    ![Login](src/assets/images/login.jpg)
+  </div>
+  <div>
+    ## Home Page
+    ![Home](src/assets/images/home.jpg)
+  </div>
+  <div>
+    ## Profile Page
+    ![Profile](src/assets/images/edit-profile.jpg)
+  </div>
+  <div>
+    ## Create events
+    ![Create Events](src/assets/images/create-event.jpg)
+  </div>
+</div>
 
-## Profile Page
-![Profile](src/assets/images/edit-profile.jpg)
-
-## Create events
-![Create Events](src/assets/images/create-event.jpg)
 
 #About The Project
 

@@ -47,19 +47,19 @@ Mobile App for Reservation tickets and Create Events
   git clone https://github.com/arthuriski29/aceventure_apps
 ```
 
-Go to the project directory
+## 2. Go to the project directory
 
 ```bash
   cd aceventure_apps
 ```
 
-Install dependencies
+## 3. Install dependencies
 
 ```bash
   npm install
 ```
 
-For debugging mode, make sure you plugged in your phone device with usb-debugging turned on, and set [adb](https://www.xda-developers.com/install-adb-windows-macos-linux/) setting.
+## 4. For debugging mode, make sure you plugged in your phone device with usb-debugging turned on, and set [adb](https://www.xda-developers.com/install-adb-windows-macos-linux/) setting.
 To check adb devices connected with your computer, type in your console :
 ```bash
   adb devices
@@ -70,14 +70,9 @@ if adb is connected, it should display:
   [your_device_code] device
 ```
 Then
-Start the server at your IDE
-
-```bash
-  npm run start
-```
-
-Install to your phone
+## 5. Start debugging and Install debug in your phone
 
 ```bash
   react-native run android
 ```
+

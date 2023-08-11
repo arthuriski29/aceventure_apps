@@ -50,7 +50,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd aceventure_apps
 ```
 
 Install dependencies
@@ -59,8 +59,25 @@ Install dependencies
   npm install
 ```
 
-Start the server
+For debugging mode, make sure you plugged in your phone device with usb-debugging turned on, and set [adb](https://www.xda-developers.com/install-adb-windows-macos-linux/) setting.
+To check adb devices connected with your computer, tyoe in your console :
+```bash
+  adb devices
+```
+if adb is connected, it should display:
+```bash
+  List of devices attached
+  [your_device_code] device
+```
+Then
+Start the server at your IDE
 
 ```bash
   npm run start
+```
+
+Install to your phone
+
+```bash
+  react-native run android
 ```
